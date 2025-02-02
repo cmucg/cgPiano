@@ -21,3 +21,9 @@
 -  This project uses Tone.js, which is licensed under the MIT License.
 - Tone.js Copyright (c) 2014-2020, Yotam Mann
 - License: https://github.com/Tonejs/Tone.js/blob/dev/LICENSE.md
+
+## From cgKeyBoardPiano026.html on:
+- Change-pitch function is added: click in the input-box and rotate mouse wheel to set how-many semitones. 
+- When a key is pressed, if it has note, its note will play for a long time, until the next key is pressed to play another note or space-bar pressed to stop. 
+- It also needs Tone.js, just like cgKeyBoardPiano025
+  
