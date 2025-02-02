@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CG piano</title>
+  <!-- https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.39/Tone.min.js -->
+  <script src="Tone.js"></script>
+  <style>
+    h1,h2,h3,form{
+        color: blueviolet;
+        text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your computer keyboard is an easy-memorize piano now!</h1>
+  <h2> one-finger plays one-number-name's low-mid-high-notes </h2>
+  <h3> place your fingers at the standard typing location on key-board </h3>
+  <h3> 1 2 3 4, 5 6 7 i, are right under your fingers, they are: </h3>
+  <h2> A S D F for 1 2 3 4  ,  J K L SemiColon for 5 6 7 i </h2>
+  <h2> keys in the higher row and lower row, for corresponding high notes and low notes </h2>
+  <h2> SpaceBar to stop the sound </h2>
+  <h3>
+  <form>
+    <label for="cgCheck">Sound continues after key is released: </label>
+    <input type="checkbox" id="cgCheck"> <br>
+    <label for="cgText"> Rotate mouse-wheel: -1,-2,-3,...lower; 1,2,3,...higher. Chang pitch:</label>
+    <input type="text" id="cgText" size="3" value="0">
+  </form>
+  </h3>
+  <h3 id="cgInfor" style="color: #f00;"> </h3>
+  <script>
+    var keyState ={}
+    const cgKeys = 'a  s  d  f   j  k  l  ;    q  w  e  r   u  i  o  p    z  x  c  v   m  ,  .  /'.split(/\s+/g)
+    const cgNotes= 'C4 D4 E4 F4  G4 A4 B4 C5   C5 D5 E5 F5  G5 A5 B5 C6   C3 D3 E3 F3  G3 A3 B3 C4'.split(/\s+/g)
+    var cgN = cgKeys.length
+    if(cgKeys.length > cgNotes.length) {cgN= cgNotes.length; document.getElementById('cgInfor').innerText = 'cgKeys more than cgNotes'}
+    else if (cgKeys.length < cgNotes.length) document.getElementById('cgInfor').innerText = 'cgKeys less than cgNotes'
+    else document.getElementById('cgInfor').innerText = ''
+
+    var key2Note = {}
+    for(let i=0; i<cgN; i++) key2Note[cgKeys[i]] = cgNotes[i]
+
+    const synth = new Tone.Synth().toDestination()
+
+    var lastKey, ee
+    document.onkeydown = (e) => {
+        ee = e
+        e.preventDefault()
+        // console.log(e.key)
+        if(e.key===' ') synth.triggerRelease() 
+        const note = key2Note[e.key]
+        if(keyState[e.key]) return
+        keyState[e.key] = 1
+        if(note) {
+            // synth.triggerAttackRelease(note, '1n') // 1n 2n 4n 8n the smaller the longer
+            synth.triggerAttackRelease(note)
+            lastKey = e.key 
+        }
+    }
+
+    var cgCheck = document.querySelector('#cgCheck')
+    document.onkeyup = (e)=>{
+        keyState[e.key] = 0 // when this is 1, pressing the key does not play sound, so as to avoid automatic repeating
+        if(! cgCheck.checked && e.key===lastKey) synth.triggerRelease() 
+    }
+    cgCheck.onkeydown = (e)=>{e.preventDefault()}
+    cgCheck.onkeyup = (e)=>{e.preventDefault()}
+    cgCheck.checked = true
+
+    var cgText = document.querySelector('#cgText')
+    cgText.onmousewheel = (e)=>{
+        e.preventDefault()
+        if(e.deltaY>0) cgText.value --
+        else cgText.value ++
+        const n = 1 * cgText.value
+        for(let i=0; i<cgN; i++) key2Note[cgKeys[i]] = Tone.Frequency(cgNotes[i]).transpose(n).toNote()
+    }
+  </script>
+</body>
+</html>
