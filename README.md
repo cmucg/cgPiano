@@ -1,6 +1,6 @@
 # cgPiano
 ## Computer key-board piano, simplified memorizing: one-finger plays one-number-name's low middle high notes
-
+### cgPiano026.zip is the newest
 - This soft piano (CG piano) is designed and programmed by Dr.ChenGuang, under the MIT License.
 - It is very easy to memorize the keys, because one finger plays low mid high notes of the same number:
 - left-little-finger controls keys Z, A, Q for low 1, mid 1, high 1
