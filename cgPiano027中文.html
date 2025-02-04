@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CG piano</title>
+  <!-- https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.39/Tone.min.js -->
+  <script src="Tone.js"></script>
+  <style>
+    h1,h2,h3,form{
+        color: blueviolet;
+        text-align: center;
+        margin: 0px;
+        padding: 0px;
+    }
+  </style>
+</head>
+<body>
+    <h1> 陈式简易键盘琴 </h1>
+    <h2> 左小指 低中高音1、环指2、中3、食4。右食指5、中6、环7、小i </h2>
+    <h3> 将双手放在 标准打字位置 </h3>
+    <h3> 中音 1 2 3 4, 5 6 7 i, 就恰好在 您的手指下: </h3>
+    <h2> A S D F 分别为 1 2 3 4  ,  J K L 分号键 分别为 5 6 7 i </h2>
+    <h2> 上排、下排 相应位置的键 为相应的 高音、低音 </h2>
+    <h3> Shift+以上各键 发出 高半音 </h3>
+    <h2> 空格键 停止发声 </h2>
+  <h3>
+  <form>
+    <label for="cgCheck">手离键 音持续：</label>
+    <input type="checkbox" id="cgCheck"> <br>
+
+    <label for="cgText"> 转动鼠标轮 或上下左右键 升降调</label>
+    <input type="text" id="cgText" size="2" value="0">
+    <label for="cgText"> 个半音。目前 调为</label>
+    <h1 style="margin: 0px; padding: 0px;" id="cgPitch">C</h1>
+  </form>
+  </h3>
+  <h3 id="cgInfor" style="color: #f00;"> </h3>
+  <script>
+    var keyState ={}
+    const cgKeys = 'a  s  d  f   j  k  l  ;   :    q  w  e  r   u  i  o  p    z  x  c  v   m  ,  .  /    <   >  ?'.split(/\s+/g)
+    const cgNotes= 'C4 D4 E4 F4  G4 A4 B4 C5  C#5  C5 D5 E5 F5  G5 A5 B5 C6   C3 D3 E3 F3  G3 A3 B3 C4   A#3 C4 C#4'.split(/\s+/g)
+    var cgN = cgKeys.length
+    if(cgKeys.length > cgNotes.length) {cgN= cgNotes.length; document.getElementById('cgInfor').innerText = 'cgKeys多于cgNotes'}
+    else if (cgKeys.length < cgNotes.length) document.getElementById('cgInfor').innerText = 'cgKeys少于cgNotes'
+    else document.getElementById('cgInfor').innerText = ''
+
+    var key2Note = {}
+    for(let i=0; i<cgN; i++){
+        const k=cgKeys[i], v=cgNotes[i]
+        key2Note[k] = v
+        if(/^[a-z]$/.test(k)) key2Note[k.toUpperCase()] = Tone.Frequency(v).transpose(1).toNote()
+    }
+    const synth = new Tone.Synth().toDestination()
+
+    var lastKey, ee
+    document.onkeydown = (e) => {
+        ee = e
+        e.preventDefault()
+        // console.log(e.key)
+        if(e.key===' ') synth.triggerRelease() 
+        const note = key2Note[e.key]
+        if(keyState[e.key]) return
+        keyState[e.key] = 1
+        if(note) {
+            // synth.triggerAttackRelease(note, '1n') // 1n 2n 4n 8n the smaller the longer
+            synth.triggerAttackRelease(note)
+            lastKey = e.key 
+        }
+        else if(e.key==='ArrowUp'||e.key==='ArrowRight') cgChangePitch(1)
+        else if(e.key==='ArrowDown'||e.key==='ArrowLeft') cgChangePitch(-1)
+    }
+
+    var cgCheck = document.querySelector('#cgCheck')
+    document.onkeyup = (e)=>{
+        keyState[e.key] = 0 // when this is 1, pressing the key does not play sound, so as to avoid automatic repeating
+        if(! cgCheck.checked && e.key===lastKey) synth.triggerRelease() 
+    }
+    cgCheck.onkeydown = (e)=>{e.preventDefault()}
+    cgCheck.onkeyup = (e)=>{e.preventDefault()}
+    cgCheck.checked = true
+
+    var cgText = document.querySelector('#cgText')
+    var cgPitch = document.querySelector('#cgPitch')
+    const cgPitchs = 'C , C#或Db , D , D#或Eb , E , F , F#或Gb , G , G#或Ab , A , A#或Bb , B'.split(' , ')
+    document.onmousewheel = (e)=>{
+        // e.preventDefault()
+        cgChangePitch(-e.deltaY)
+    }
+    function cgChangePitch(delta){
+        // e.preventDefault()
+        if(delta>0) cgText.value ++
+        else cgText.value --
+        const n = 1 * cgText.value
+        for(let i=0; i<cgN; i++){
+            const k=cgKeys[i], v=Tone.Frequency(cgNotes[i]).transpose(n).toNote()
+            key2Note[k] = v
+            if(/^[a-z]$/.test(k)) key2Note[k.toUpperCase()] = Tone.Frequency(v).transpose(1).toNote()
+        }
+        if(n>=0) cgPitch.innerText = cgPitchs[n%12]
+        else cgPitch.innerText = cgPitchs[(parseInt(-n/12+1)*12+n)%12]
+    }
+  </script>
+</body>
+</html>
