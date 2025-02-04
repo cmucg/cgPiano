@@ -26,4 +26,10 @@
 - Change-pitch function is added: click in the input-box and rotate mouse wheel to set how-many semitones. 
 - When a key is pressed, if it has note, its note will play for a long time, until the next key is pressed to play another note or space-bar pressed to stop. 
 - It also needs Tone.js, just like cgKeyBoardPiano025
+
+## From cgPiano027 on:
+- Shift+key plays 1 semitone higher. Just like the black keys in piano. 
+- Change pitch: rotate mouse-wheel or left right up down arrow-keys. 
+- Change pitch is displayed as both n semitones and letters.
+
   
