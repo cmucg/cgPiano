@@ -32,4 +32,6 @@
 - Change pitch: rotate mouse-wheel or left right up down arrow-keys. 
 - Change pitch is displayed as both n semitones and letters.
 
+## from cgPiano028 on:
+- Allows pressing 2 or 3 keys at the same time. Of course, pressing one by one is also OK.
   
