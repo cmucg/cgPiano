@@ -34,4 +34,9 @@
 
 ## from cgPiano028 on:
 - Allows pressing 2 or 3 keys at the same time. Of course, pressing one by one is also OK.
-  
+
+## from cgPiano029 on:
+- All the keys corresponding note are shown in web-page, keeping the order in key-board.
+- When a key is pressed, the back-ground becomes black.
+
+
