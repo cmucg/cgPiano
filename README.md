@@ -39,4 +39,9 @@
 - All the keys corresponding note are shown in web-page, keeping the order in key-board.
 - When a key is pressed, the back-ground becomes black.
 
+## from cgPiano030 on:
+- g,h,t,y,b,n are made into chord-keys.
+- Pressing a note key, then press any chord-key, 
+- A lower chord-note will accompany the main note.
+- Press the chord-key again and again, will change into the other chrod-notes .
 
