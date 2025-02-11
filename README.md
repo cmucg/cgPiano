@@ -45,3 +45,6 @@
 - A lower chord-note will accompany the main note.
 - Press the chord-key again and again, will change into the other chrod-notes .
 
+## from cgPiano031 on:
+- Added check-box to choose when multiple keys pressed, play chord or not. 
+- Introduced name-space-objects. 
