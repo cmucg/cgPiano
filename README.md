@@ -48,3 +48,7 @@
 ## from cgPiano031 on:
 - Added check-box to choose when multiple keys pressed, play chord or not. 
 - Introduced name-space-objects. 
+
+## from cgPiano032 on:
+- name-space-object defined dom, thus can be an easy frame-wrok of JavaScript
+
