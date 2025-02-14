@@ -52,3 +52,9 @@
 ## from cgPiano032 on:
 - name-space-object defined dom, thus can be an easy frame-wrok of JavaScript
 
+## from cgPiano034 on:
+- Name-space-object based POP like OOP can generate new objects. 
+- This technique is used here to generate combined-doms here, thus is the prototype of a JavaScript frame-work, like React and VUE. 
+- Space-bar is used for auto-chord, Enter and the near-by keys: ' ] \  for stop. 
+
+
