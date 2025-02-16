@@ -57,4 +57,6 @@
 - This technique is used here to generate combined-doms here, thus is the prototype of a JavaScript frame-work, like React and VUE. 
 - Space-bar is used for auto-chord, Enter and the near-by keys: ' ] \  for stop. 
 
-
+## from cgPiano035 on:
+- Added keys G, H, SpaceBar to the key-board in GUI
+- Made the keys equal in size. 
