@@ -60,3 +60,8 @@
 ## from cgPiano035 on:
 - Added keys G, H, SpaceBar to the key-board in GUI
 - Made the keys equal in size. 
+
+## from cgPiano036 on:
+- Possible to play more kinds of chords, such as:
+- Earlier versions 1 only has 1 chord 1 3 5 ,  2 only has 1 chord 2 4 6 ,   3 only has 1 chord 3 5 7 ,  4 only has 1 chord 4 6 i , ... 
+- From this version on, 1 has 2 more chords 4 6 i , 6 1 3. ...
