@@ -68,3 +68,4 @@
 
 ## from cgPiano037 on:
 - Made easier to add new auto-chords to the keys t y b n or other keys.
+- cgPiano037English and cgPiano037Chinese, auto-chord related settings are concentrated in lines 299-305. 
