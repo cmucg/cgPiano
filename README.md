@@ -65,3 +65,6 @@
 - Possible to play more kinds of chords, such as:
 - Earlier versions 1 only has 1 chord 1 3 5 ,  2 only has 1 chord 2 4 6 ,   3 only has 1 chord 3 5 7 ,  4 only has 1 chord 4 6 i , ... 
 - From this version on, 1 has 2 more chords 4 6 i , 6 1 3. ...
+
+## from cgPiano037 on:
+- Made easier to add new auto-chords to the keys t y b n or other keys.
