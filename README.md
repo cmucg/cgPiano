@@ -70,7 +70,7 @@
 - Made easier to add new auto-chords to the keys t y b n or other keys.
 - cgPiano037English and cgPiano037Chinese, auto-chord related settings are concentrated in lines 299-305. 
 
-## from cgPiano038.zip on:
+## from cgPiano038 on:
 - "Object.create" replaced "structuredClone" to work in new and old browsers. 
 - The key g sets to use the 3 note of a chord as root, eg: when the last note is 5, chord is 1 3 5. 
 - When space-bar pressed soon after a note, adds an octave-lower note as chord. 
