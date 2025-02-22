@@ -113,7 +113,7 @@
     }).toString()  // add this line at last, to make a string, thus avoid errors in instantiation
 
     function New (templateName='inputq',newObjectName='inputq1'){
-        eval(`${newObjectName}=structuredClone(${templateName})`)
+        eval(`${newObjectName}=Object.create(${templateName})`) // eval(`${newObjectName}=structuredClone(${templateName})`)
         const build = eval(`${templateName}.Build.replaceAll(/(?<!\w)${templateName}(?=\.|\')/g,'${newObjectName}')`)
         eval(`${newObjectName}.Build=${build}`)
     }
