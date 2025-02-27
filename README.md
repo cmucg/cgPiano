@@ -12,7 +12,7 @@
 - ... ...
 - Same as and easier than Standard English Typing Technique.
 
-- You can choose to make the sound continue after releasing a key until you play another note or press the space-bar.
+- You can choose to make the sound continue after releasing a key until you play another note or press the Enter-key.
 - You can also choose to make the sound stop as soon as you release a key.
 
 - Tone.js is the function-library for music downloaded from
